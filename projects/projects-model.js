@@ -1,41 +1,36 @@
-const db = require('../data/db-config.js');
+const knex = require("knex");
+const config = require("../knexfile.js");
+const db = knex(config.development);
+const mappers = require("../data/helpers/mappers.js");
 
 module.exports = {
-  find, 
-  findById, 
-  postProject, 
-  postTask, 
-  postResource
+  findProject,
+  addProject,
+  findResource,
+  addResource,
+  findTask
+};
+
+// method to get the projects (All)
+function findProject() {
+  return db("Project");
 }
 
-function find() {
-  return db('projects')
+function addProject(body) {
+  return db("projects").insert(body);
 }
 
-function findById(id) {
-  return db('projects')
-    .where({ id })
-    .first()
-    .then(project => {
-      return db('tasks')
-        .where({ project_id: id })
-        .then(tasks => {
-          return { ...project, actions }
-        })
-    })
+function findResource() {
+  return db("resource");
 }
 
-async function postProject(project) {
-  const [id] = await db('projects').insert(project)
-  return findById(id)
+function addResource(body) {
+  return db("resource").insert(body);
 }
 
-async function postTask(task) {
-  const [id] = await db("tasks").insert(task);
-  return findById(id);
-}
-
-async function postResource(resource) {
-  const [id] = await db('resources').insert(resource)
-  return findById(resource.project_id)
+function findTask(taskId) {
+  return db("task")
+    .join("project", "project.id", "task.project_id")
+    .where({ "task.project_id": taskId })
+    .select("project.project_name", "project.project_description", "task.*");
 }

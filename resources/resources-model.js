@@ -1,32 +1,21 @@
-const db = require("../data/db-config.js");
+// const knex = require("knex");
+// const config = require("../knexfile.js");
+// const db = knex(config.development);
 
-module.exports = {
-  find,
-  findById,
-  postResource,
-};
+// module.exports = {
+//   findResources,
+//   findResourceById,
+//   addResources,
+// };
 
-function find() {
-  return db("resources");
-}
-
-function findById(id) {
-  return db("resources")
-    .where({ id })
-    .first()
-}
-
-async function postResource(resource) {
-  const [id] = await db("resources").insert(resource);
-  return findById(id);
-}
-
-// async function postTask(task) {
-//   const [id] = await db("tasks").insert(task);
-//   return findById(id);
+// function findResources() {
+//   return db("Resources");
 // }
 
-// async function postResource(resource) {
-//   const [id] = await db("resources").insert(resource);
-//   return findById(resource.project_id);
-//}
+// function findResourceById(id) {
+//   return db("Resources").where({ id });
+// }
+
+// function addResources(resourceInfo) {
+//   return db("Resources").insert(resourceInfo);
+// }

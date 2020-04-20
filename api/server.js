@@ -3,18 +3,18 @@ const helmet = require("helmet");
 const mw = require("./middleware.js");
 const logger = mw.logger;
 
-const projectsRouter = require("../projects/projects-router.js");
-const resourcesRouter = require("../resources/resources-router.js");
-const tasksRouter = require("../tasks/tasks-router.js");
+const projectRouter = require("../projects/projects-router.js");
+// const resourcesRouter = require("../resources/resources-router.js");
+// const tasksRouter = require("../tasks/tasks-router.js");
 
 const server = express();
 
 server.use(helmet()); 
 server.use(express.json()); 
 
-server.use("/api/projects", logger, projectsRouter); 
-server.use("/api/resources", logger, resourcesRouter);
-server.use("/api/tasks", logger, tasksRouter);
+server.use("/api/projects", logger, projectRouter); 
+// server.use("/api/resources", logger, resourcesRouter);
+// server.use("/api/tasks", logger, tasksRouter);
 
 server.get("/api", (req, res) => {
   const environment = process.env;
