@@ -1,36 +1,33 @@
 const knex = require("knex");
 const config = require("../knexfile.js");
 const db = knex(config.development);
-const mappers = require("../data/helpers/mappers.js");
 
 module.exports = {
   findProject,
   addProject,
-  findResource,
-  addResource,
-  findTask
+  findTasks,
+  addTasks
 };
 
 // method to get the projects (All)
 function findProject() {
-  return db("Project");
+  return db("projects");
 }
 
 function addProject(body) {
   return db("projects").insert(body);
 }
 
-function findResource() {
-  return db("resource");
+// join statement
+function findTasks(taskId) {
+  return db
+    .select("projects.projects_name", "projects.projects_description", "tasks.*")
+    .from("tasks")
+    .join("projects", "projects.id", "tasks.projects_id")
+    .where({ "tasks.projects_id": taskId })
 }
 
-function addResource(body) {
-  return db("resource").insert(body);
-}
-
-function findTask(taskId) {
-  return db("task")
-    .join("project", "project.id", "task.project_id")
-    .where({ "task.project_id": taskId })
-    .select("project.project_name", "project.project_description", "task.*");
+function addTasks(tasks) {
+  return db("tasks").insert(tasks)
+  .then(ids => ({ id: ids[0] }))
 }

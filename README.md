@@ -25,10 +25,10 @@ Follow these steps to set up and work on your project:
 
 Follow these steps for completing your project.
 
-- [ ] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
-- [ ] Please don't merge your own pull request.
-- [ ] Add your _Team Lead_ as a Reviewer on the Pull-request
-- [ ] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
+- [X] Submit a Pull-Request to merge `firstName-lastName` Branch into master on **your fork, don't make Pull Requests against Lambda's repository**.
+- [X] Please don't merge your own pull request.
+- [X] Add your _Team Lead_ as a Reviewer on the Pull-request
+- [X] Your _Team Lead_ will count the challenge as done by merging the branch into _master_.
 
 ## Commits
 
@@ -42,8 +42,7 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 Relational DB (RDBMS) is the db software itself, which manages storage, querying, updating, etc. It uses a relational model of data. If you want to work on an RDBMS, you will need to learn its implementation language (often C), relational model theory, and a lot of nitty-gritty stuff about filesystem access, transactional logging, scalability, synchronisation, etc. RDBMS is the system. 
 
-SQL is a language which is used to query the RDBMS. If you want to work with SQL, you just learn SQL and maybe a tiny bit of relational model theory for background. SQL is the language used to interact with the system. While all CRUD functionality should be the same across all SQL-based DBs, there will be some difference between them. 
-
+SQL is a language which is used to query the RDBMS. If you want to work with SQL, you just learn SQL and maybe a tiny bit of relational model theory for background. SQL is the language used to interact with the system. While all CRUD functionality should be the same across all SQL-based DBs, there will be some differences between them. 
 
 - [X] Why do tables need a `primary key`?
 

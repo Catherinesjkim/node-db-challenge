@@ -1,21 +1,16 @@
-// const knex = require("knex");
-// const config = require("../knexfile.js");
-// const db = knex(config.development);
+const knex = require("knex");
+const config = require("../knexfile.js");
+const db = knex(config.development);
 
-// module.exports = {
-//   findResources,
-//   findResourceById,
-//   addResources,
-// };
+module.exports = {
+  findResource,
+  addResource
+};
 
-// function findResources() {
-//   return db("Resources");
-// }
+function findResource() {
+  return db("resource");
+}
 
-// function findResourceById(id) {
-//   return db("Resources").where({ id });
-// }
-
-// function addResources(resourceInfo) {
-//   return db("Resources").insert(resourceInfo);
-// }
+function addResource(body) {
+  return db("resource").insert(body);
+}

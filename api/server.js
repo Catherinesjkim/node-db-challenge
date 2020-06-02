@@ -1,20 +1,20 @@
 const express = require("express"); // importing a CommonJS module
 const helmet = require("helmet");
+
 const mw = require("./middleware.js");
 const logger = mw.logger;
 
 const projectRouter = require("../projects/projects-router.js");
-// const resourcesRouter = require("../resources/resources-router.js");
-// const tasksRouter = require("../tasks/tasks-router.js");
+const resourcesRouter = require("../resources/resources-router.js");
+const tasksRouter = require("../tasks/tasks-router.js");
 
 const server = express();
 
-server.use(helmet()); 
-server.use(express.json()); 
+server.use(helmet(), logger, express.json()); 
 
-server.use("/api/projects", logger, projectRouter); 
-// server.use("/api/resources", logger, resourcesRouter);
-// server.use("/api/tasks", logger, tasksRouter);
+server.use("/api/projects", projectRouter); 
+server.use("/api/resources", resourcesRouter);
+server.use("/api/tasks", tasksRouter); // move the tasks into its own model and router.
 
 server.get("/api", (req, res) => {
   const environment = process.env;
@@ -33,11 +33,9 @@ server.get("/", addName, (req, res) => {
 });
 
 function addName(req, res, next) {
-  req.name = "WEB PT 11";
+  req.name = "WEB PT 13";
 
   next();
 }
-
-// server.use(notFound);
 
 module.exports = server;
